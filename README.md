@@ -10,7 +10,13 @@ This is the repo hosting FIND automatic quality inspection package
 
 ## Usage
 
-Before correctly running the application you need to create a virtual environment containing the "/requirements.txt" versions of used libraries.
+Before correctly running the application you need to:
+- Create a virtual environment containing the "/requirements.txt" versions of used libraries;
+- Edit the IPCAM_PATH and CAMERA_CALIBRATION_PATH in "config.py" accordingly to the path of your local copy of FIND repo.
+```
+  IPCAM_PATH = '<local path to cloned repo>/FIND/input_images/test_set_01/'
+  CALIBRATION_CAM_PATH = '<local path to cloned repo>/FIND/input_images/camera_calibration/'
+```
 You can process an image by using this command from FIND dir:
 ```
   python inspect_mold.py -i 04.png
