@@ -1,1 +1,1 @@
-{"mold_state": "Mold is ok", "warning_color": "green", "mold_tot_area": 443, "sand_roi_tot_area": 443, "frame_roi_tot_area": 0, "frame_clean": true}
+{"mold_state": "Mold is ok", "warning_color": "green", "mold_tot_area": 1431, "sand_roi_tot_area": 1431, "frame_roi_tot_area": 0, "frame_clean": true}
