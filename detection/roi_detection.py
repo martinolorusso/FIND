@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""This python script contains the classes and methods for detecting the regions of interest (ROI)
-    the analysis will be focused on."""
+"""This python script contains the classes and methods for detecting the regions of interest (ROIs)
+    the analysis will be focused on"""
 
 __author__ = 'martino lorusso'
 
@@ -11,14 +11,15 @@ import random
 import math
 
 import numpy as np
-import matplotlib.pyplot as plt
 import cv2
 
 
 class Frame:
     """
-    A class for representing the upper metal frame of a mold and implementing the image processing
-    techniques to analyse it. Please, see OpenCV documentation for reference
+    A class for representing the upper metal chassis of a mold
+
+    Frame class methods implement the necessary image processing techniques for frame analysis.
+    See OpenCV documentation for reference
 
     Attributes
     ----------
@@ -57,6 +58,7 @@ class Frame:
     """
 
     def __init__(self, frame_params):
+        # A dictionary of parameters can be passed using a configuration file like config.py
         self.frame_params = frame_params
 
     def detect_frame_lines(self, src, params, num_frame_lines=10):
@@ -72,7 +74,7 @@ class Frame:
             Parameters need to be stored in config.py
         num_frame_lines : int
             The number of lines to be extracted among all the lines that are detected in order
-            of likelihood (default 10). Look at OpenCV's HoughLines algo documentation for reference
+            of likelihood (default 10). See OpenCV's HoughLines method documentation for reference
 
         Returns
         -------
@@ -477,8 +479,10 @@ class Frame:
 
 class Sand:
     """
-    A class for representing the central sandy area of a mold where the casting process occurs, and
-    implementing the image processing techniques to analyse it
+    A class for representing the central sandy area of a mold where the casting process occurs
+
+    Sand class methods implement the necessary image processing techniques for sandy area analysis.
+    See OpenCV documentation for reference
 
     Attributes
     ----------
