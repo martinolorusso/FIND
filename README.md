@@ -16,7 +16,7 @@ Before correctly running the application you need to:
 - Edit the IPCAM_PATH and IPCAM_CALIBRATION_PATH in "config.py" accordingly to the path of your local copy of FIND master repo.
 ```
   IPCAM_PATH = '<local path to cloned repo>/input_images/test_set_01/'
-  CALIBRATION_CAM_PATH = '<local path to cloned repo>/input_images/camera_calibration/'
+  IPCAM_CALIBRATION_PATH = '<local path to cloned repo>/input_images/camera_calibration/'
 ```
 You can process an image by using this command from FIND dir:
 ```
