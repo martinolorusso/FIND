@@ -1,7 +1,7 @@
 # FIND
-This is the repo hosting FIND automatic quality inspection package
 
-### ---> Documentation is under construction! <---
+This is the repo hosting FIND automatic quality inspection application.
+
 
 ## Data
 
@@ -13,7 +13,7 @@ This is the repo hosting FIND automatic quality inspection package
 The application has been developed and tested on Linux Ubuntu 18.04.4 LTS 64-bit OS with Python 3.6.9.
 Before correctly running the application you need to:
 - Create a virtual environment containing the "/requirements.txt" versions of used libraries;
-- Edit the IPCAM_PATH and CALIBRATION_CAM_PATH in "config.py" accordingly to the path of your local copy of FIND master repo.
+- Edit the IPCAM_PATH and IPCAM_CALIBRATION_PATH in "config.py" accordingly to the path of your local copy of FIND master repo.
 ```
   IPCAM_PATH = '<local path to cloned repo>/input_images/test_set_01/'
   CALIBRATION_CAM_PATH = '<local path to cloned repo>/input_images/camera_calibration/'
