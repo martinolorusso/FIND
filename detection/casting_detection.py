@@ -6,6 +6,8 @@
 
 __author__ = 'martino lorusso'
 
+
+# Import the necessary packages
 from misc.visualization import *
 
 
@@ -42,9 +44,7 @@ class Casting:
     update_mold_state(inspected, mold_state, warning_color, mold_casting_area, frame_clean)
         Update the information about the inspected mold state based on its condition check
 
-
     """
-
     def __init__(self):
         pass
 
@@ -92,7 +92,7 @@ class Casting:
 
         """
         # Apply the Canny algo using the provided parameters --> OpenCV doc. for ref.
-        canny_output = cv2.Canny(src, canny_thresh, canny_thresh * multiplier, aperture)
+        canny_output = cv2.Canny(src, canny_thresh, canny_thresh*multiplier, aperture)
         # Retrieve contours and hierarchy using the algorithm [Suzuki85] --> OpenCV doc. for ref.
         contours, hierarchy = cv2.findContours(canny_output, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -219,6 +219,11 @@ class Casting:
             Allow to show the value of each contour area
         label : str
             Add a label to the shown image (default "Detected")
+
+        Returns
+        -------
+        total_area : float
+            The total area computed by adding up the areas of all contours
 
         """
         dst = src.copy()

@@ -7,7 +7,7 @@
     This is the most critical scenario since it may cause the plant blocking in the worst case.
     The metal shapes occurring in such risky condition are called "burrs". So, this algorithm is
     designed to search for potential burrs by computing the casting surface area on the mold
-    floor and spotting the presence of poured metal on the upper frame."""
+    floor and spotting the presence of poured metal on the upper frame"""
 
 __author__ = 'martino lorusso'
 
@@ -48,7 +48,7 @@ if args["random"]:
 else:
     image = cv2.imread(IPCAM_PATH + args["image"])
 # Pre-process the loaded image
-cropped = preprocess_img(image, calib_cam_path=CALIBRATION_CAM_PATH, rotation_angle=-3.5,
+cropped = preprocess_img(image, cam_calib_path=IPCAM_CALIBRATION_PATH, rotation_angle=-3.5,
                          cropping_params=CROP_PARAMS)
 
 # Show the pre-processing step output image if required
@@ -62,10 +62,9 @@ if args["steps"]:
 # with respect to the casting surfaces area computation
 
 # De-noise the pre-processed image according to the config file parameters
-params = FRAME_PARAMS
-first = cv2.fastNlMeansDenoising(cropped.copy(), h=params['h'],
-                                 templateWindowSize=params['template_window_size'],
-                                 searchWindowSize=params['search_window_size'])
+first = cv2.fastNlMeansDenoising(cropped.copy(), h=FRAME_PARAMS['h'],
+                                 templateWindowSize=FRAME_PARAMS['template_window_size'],
+                                 searchWindowSize=FRAME_PARAMS['search_window_size'])
 # Convert the de-noised image to grayscale and smooth it by blurring
 blurred = gray_and_blur(first, blur=True, ksize=7)
 # Init a Segmentation class object with the config.py segmentation parameters
@@ -74,15 +73,16 @@ sgm = Segmentation(SEGMENTATION_PARAMS)
 thresh = sgm.scale_abs_convert_thresh(blurred)
 # Apply a sequence of morphological transformations to simplify the thresholded image
 # in order to better detect contours
-transf_seq = TRANSFORMATION_SEQUENCE
-transformed = sgm.transform_morphology(thresh, transf_seq, SEGMENTATION_PARAMS['morph_ops_params'])
+transformed = sgm.transform_morphology(
+    thresh, TRANSFORMATION_SEQ, SEGMENTATION_PARAMS['morph_ops_params'])
 
 # Show the segmentation step output image if required
 if args["steps"]:
-    print(f"Sequence of transformations: {transf_seq}")
+    print(f"Sequence of transformations: {TRANSFORMATION_SEQ}")
     view_image(
         np.hstack([thresh, transformed]),
-        img_name=f"Thresholding | {transf_seq[0].capitalize()} and {transf_seq[1].capitalize()}")
+        img_name=f"Thresholding | {TRANSFORMATION_SEQ[0].capitalize()} and \
+        {TRANSFORMATION_SEQ[1].capitalize()}")
 
 
 # ------ FRAME ROI DETECTION ------

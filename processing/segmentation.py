@@ -5,6 +5,7 @@
 
 __author__ = 'martino lorusso'
 
+
 # Import the necessary packages
 import cv2
 from processing.image_processing import define_kernel
@@ -29,6 +30,8 @@ class Segmentation:
         Adjust the brightness/contrast of an image and apply a simple threshold
     apply_morph_op(src, morph_op, morph_op_params)
         Apply an operation to the source image among a set of morphology operations
+    transform_morphology(op_src, morph_ops_sequence, morph_ops_params)
+        Apply a sequence of morphological operations to the source image
 
     """
 
@@ -120,7 +123,8 @@ class Segmentation:
 
         Returns
         -------
-
+        op_src : ndarray
+            3D array of `int` type representing the transformed image
 
         """
         # Loop over the transformations list
