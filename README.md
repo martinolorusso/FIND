@@ -1,6 +1,6 @@
 # FIND
 
-This is the repo hosting FIND automatic quality inspection application.
+This is the repo hosting Automatic Quality Inspection (AQI) application (beta version) of FIND project. More information can be found [here](https://www.progettofind.it/it/).
 
 
 ## Data
@@ -10,7 +10,7 @@ This is the repo hosting FIND automatic quality inspection application.
 
 ## Usage
 
-The application has been developed and tested on Linux Ubuntu 18.04.4 LTS 64-bit OS with Python 3.6.9.
+The application has been developed and tested on Linux Ubuntu 18.04.4 LTS 64-bit OS with Python 3.6.9. It has also been tested on a UDOO X86 single board computer running Windows 10 and Python 3.6.8.
 Before correctly running the application you need to:
 - Create a virtual environment containing the "/requirements.txt" versions of used libraries;
 - Edit the IPCAM_PATH and IPCAM_CALIBRATION_PATH in "config.py" accordingly to the path of your local copy of FIND master repo.
@@ -18,7 +18,11 @@ Before correctly running the application you need to:
   IPCAM_PATH = '<local path to cloned repo>/input_images/test_set_01/'
   IPCAM_CALIBRATION_PATH = '<local path to cloned repo>/input_images/camera_calibration/'
 ```
-You can process an image by using this command from FIND dir:
+You can process an image by using this CLI command from FIND dir:
+```
+  python inspect_mold.py -i <image path>
+```
+For instance, to analyze the image "04.png" you can type:
 ```
   python inspect_mold.py -i 04.png
 ```
@@ -26,7 +30,7 @@ To load a random image from the test set you can use the --random argument:
 ```
   python inspect_mold.py -r
 ```
-To visualize all the intermediate steps of processing you can add the --step argument in both single image and random image mode, as follows:
+To visualize all the intermediate steps of processing you can add the --step argument in both single image and random image mode, as in the following examples:
 ```
   python inspect_mold.py -i 04.png -s
  
@@ -42,4 +46,3 @@ Each time an image is processed an output is generated in "/output" dir consisti
 >  - Mold is ok<br>
 >  - Warning: Mold may need to be inspected!<br>
 >  - Warning: Mold needs to be inspected now!<br>
-  
