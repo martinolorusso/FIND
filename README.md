@@ -11,13 +11,8 @@ This is the repo hosting Automatic Quality Inspection (AQI) application (beta ve
 ## Usage
 
 The application has been developed and tested on Linux Ubuntu 18.04.4 LTS 64-bit OS with Python 3.6.9. It has also been tested on a UDOO X86 single board computer running Windows 10 and Python 3.6.8.
-Before correctly running the application you need to:
-- Create a virtual environment containing the "/requirements.txt" versions of used libraries;
-- Edit the IPCAM_PATH and IPCAM_CALIBRATION_PATH in "config.py" accordingly to the path of your local copy of FIND master repo.
-```
-  IPCAM_PATH = '<local path to cloned repo>/input_images/test_set_01/'
-  IPCAM_CALIBRATION_PATH = '<local path to cloned repo>/input_images/camera_calibration/'
-```
+Before correctly running the application you need to create a virtual environment containing the "/requirements.txt" versions of used libraries.
+
 You can process an image by using this CLI command from FIND dir:
 ```
   python inspect_mold.py -i <image path>
