@@ -8,8 +8,8 @@ __author__ = 'martino lorusso'
 
 
 # Loading paths
-IPCAM_PATH = '/home/martino/PycharmProjects/FIND/input_images/set/set_cropped/'
-IPCAM_CALIBRATION_PATH = '/home/martino/PycharmProjects/FIND/input_images/camera_calibration/'
+IPCAM_PATH = '/input_images/set/set_cropped/'
+IPCAM_CALIBRATION_PATH = '/input_images/camera_calibration/'
 
 # Pre-processing settings
 # See classes and methods documentation of pre-processing step for reference

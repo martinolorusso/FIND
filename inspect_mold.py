@@ -44,12 +44,13 @@ args = vars(ap.parse_args())
 
 # Load a random image if required. On the contrary, load the chosen image
 if args["random"]:
-    image = load_a_random_image(IPCAM_PATH, img_type='png')
+    image = load_a_random_image(os.getcwd() + IPCAM_PATH, img_type='png')
 else:
-    image = cv2.imread(IPCAM_PATH + args["image"])
+    image = cv2.imread(os.getenv() + IPCAM_PATH + args["image"])
+print(f"Processing image . . .")
 # Pre-process the loaded image
-cropped = preprocess_img(image, cam_calib_path=IPCAM_CALIBRATION_PATH, rotation_angle=-3.5,
-                         cropping_params=CROP_PARAMS)
+cropped = preprocess_img(image, cam_calib_path=os.getcwd() + IPCAM_CALIBRATION_PATH,
+                         rotation_angle=-3.5, cropping_params=CROP_PARAMS)
 
 # Show the pre-processing step output image if required
 if args["steps"]:
@@ -150,7 +151,11 @@ if args["steps"]:
 cst = Casting()
 # Compute the casting surfaces total area both for the sand and the frame regions. A threshold can
 # be used to remove the smaller areas by setting the size_thresh_in_px parameter by config.py
-mold_cast_area = cst.compute_mold_casting_area(cropped, sand_roi, frame_roi,
+# Show the casting total area if required
+if args["steps"]:
+    SHOW_IMG = True
+
+mold_cast_area = cst.compute_mold_casting_area(cropped, sand_roi, frame_roi, show=SHOW_IMG,
                                                size_thresh_in_px=SIZE_THRESHOLD_IN_PX)
 
 
@@ -171,10 +176,6 @@ mold_state, warn_color, frame_clean = cst.check_mold_state(num_issues, frame_cle
 # Update the mold information through a dictionary
 inspected = cst.update_mold_state(INSPECTED, mold_state, warn_color, mold_cast_area, frame_clean)
 
-# Print the mold information dictionary update if required
-if args["steps"]:
-    print(f"Mold information update: {inspected}")
-
 # Save the mold information in a json file
 with open('./output/data.txt', 'w') as outfile:
     json.dump(inspected, outfile)
@@ -183,7 +184,11 @@ with open('./output/data.txt', 'w') as outfile:
 #     data = json.load(json_file)
 #     print(data)
 
+# Print the mold information dictionary update if required
+if args["steps"]:
+    print(f"Mold information update: {inspected}")
+
 # Save a copy of the pre-processed step output image for checking
-print(f"Saving image . . .")
+print(f"Saving image and information . . .")
 filename = './output/output_image.png'
 cv2.imwrite(filename, cropped)
