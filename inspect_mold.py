@@ -176,6 +176,9 @@ mold_state, warn_color, frame_clean = cst.check_mold_state(num_issues, frame_cle
 # Update the mold information through a dictionary
 inspected = cst.update_mold_state(INSPECTED, mold_state, warn_color, mold_cast_area, frame_clean)
 
+# Check if output dir does exist and create it if necessary
+if not os.path.exists('output'):
+    os.makedirs('output')
 # Save the mold information in a json file
 with open('./output/data.txt', 'w') as outfile:
     json.dump(inspected, outfile)
