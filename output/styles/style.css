@@ -1,0 +1,36 @@
+html{
+	background: #212529;
+	font-family: 'Nunito', sans-serif;
+	color: white;
+}
+
+.titolo{
+	font-size: 30pt;
+}
+
+img{
+	border: 2px solid #595959;
+	border-radius: 5%;
+	padding: 10px;
+	width: 20%
+
+}
+
+th, td{
+	padding-left: 70px;
+	padding-right: 70px;
+	border: 2px solid #595959;
+}
+
+table{
+  background-color: transparent;
+  border-collapse: collapse;
+  text-align: center;
+  border: 2px solid #595959;
+}
+
+.riferimenti{
+	opacity: 0.5;
+	font-size: 7pt;
+	padding-top: 2%;
+}

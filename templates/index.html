@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inspected mold information</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+</head>
+<center>
+<body>
+    <h1>Inspected mold</h1>
+    <img src="{{ url_for('static', filename='output_image.png' ) }}" alt="Output Image">
+    <br>
+    <br>
+    <table border = 1>
+    {% for key, value in data.items() %}
+       <tr>
+            <th> {{ key }} </th>
+            <td> {{ value }} </td>
+       </tr>
+    {% endfor %}
+    </table>
+</body>
+<footer class="riferimenti">
+	<p>2020 - Interaction Design Lab - DISPOC - University of Siena</p>
+</footer>
+</center>
+</html>
