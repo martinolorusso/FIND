@@ -46,7 +46,7 @@ args = vars(ap.parse_args())
 if args["random"]:
     image = load_a_random_image(os.getcwd() + IPCAM_PATH, img_type='png')
 else:
-    image = cv2.imread(os.getenv() + IPCAM_PATH + args["image"])
+    image = cv2.imread(os.getcwd() + IPCAM_PATH + args["image"])
 print(f"Processing image . . .")
 # Pre-process the loaded image
 cropped = preprocess_img(image, cam_calib_path=os.getcwd() + IPCAM_CALIBRATION_PATH,
