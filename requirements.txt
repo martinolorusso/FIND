@@ -14,7 +14,7 @@ dask==2.9.0
 decorator==4.4.1
 defusedxml==0.6.0
 distro==1.4.0
-dlib==19.8.1
+- dlib==19.8.1
 entrypoints==0.3
 - face-recognition==1.2.3
 - face-recognition-models==0.3.0
