@@ -15,21 +15,21 @@ Before correctly running the application you need to create a virtual environmen
 
 You can process an image by using this CLI command from FIND dir:
 ```
-  python inspect_mold.py -i <image path>
+  python app.py -i <image path>
 ```
 For instance, to analyze the image "04.png" you can type:
 ```
-  python inspect_mold.py -i 04.png
+  python app.py -i 04.png
 ```
 To load a random image from the test set you can use the --random argument:
 ```
-  python inspect_mold.py -r
+  python app.py -r
 ```
 To visualize all the intermediate steps of processing you can add the --step argument in both single image and random image mode, as in the following examples:
 ```
-  python inspect_mold.py -i 04.png -s
+  python app.py -i 04.png -s
  
-  python inspect_mold.py -r -s
+  python app.py -r -s
  ```
 To execute the next step you need to press a key. By typing "q" key you will quit the app.
 
@@ -41,3 +41,7 @@ Each time an image is processed an output is generated in "/output" dir consisti
 >  - Mold is ok<br>
 >  - Warning: Mold may need to be inspected!<br>
 >  - Warning: Mold needs to be inspected now!<br>
+
+Such information can also be visualized in a nicer form since a local dev server is run for testing. In order to do that, access you localhost[http://localhost:5000] from your browser.
+
+![Information visualization](https://www.dropbox.com/s/s8lmsm05rjmu9a3/information.png)
