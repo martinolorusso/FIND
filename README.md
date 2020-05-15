@@ -42,7 +42,7 @@ Each time an image is processed an output is generated in "/output" dir consisti
 >  - Warning: Mold may need to be inspected!<br>
 >  - Warning: Mold needs to be inspected now!<br>
 
-Such information can also be visualized in a nicer form since a local dev server is run for testing. In order to do that, access you localhost[http://localhost:5000] from your browser.
+Such information can also be visualized in a nicer form since a local dev server is run for testing. In order to do that, access you [localhost](http://localhost:5000) from your browser.
 
 ![Information](https://dl.dropboxusercontent.com/s/s8lmsm05rjmu9a3/information.png)
 
