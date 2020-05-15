@@ -11,30 +11,25 @@ This is the repo hosting Automatic Quality Inspection (AQI) application (beta ve
 ## Usage
 
 The application has been developed and tested on Linux Ubuntu 18.04.4 LTS 64-bit OS with Python 3.6.9. It has also been tested on a UDOO X86 single board computer running Windows 10 and Python 3.6.8.
-Before correctly running the application you need to:
-- Create a virtual environment containing the "/requirements.txt" versions of used libraries;
-- Edit the IPCAM_PATH and IPCAM_CALIBRATION_PATH in "config.py" accordingly to the path of your local copy of FIND master repo.
-```
-  IPCAM_PATH = '<local path to cloned repo>/input_images/test_set_01/'
-  IPCAM_CALIBRATION_PATH = '<local path to cloned repo>/input_images/camera_calibration/'
-```
+Before correctly running the application you need to create a virtual environment containing the "/requirements.txt" versions of used libraries.
+
 You can process an image by using this CLI command from FIND dir:
 ```
-  python inspect_mold.py -i <image path>
+  python app.py -i <image path>
 ```
 For instance, to analyze the image "04.png" you can type:
 ```
-  python inspect_mold.py -i 04.png
+  python app.py -i 04.png
 ```
 To load a random image from the test set you can use the --random argument:
 ```
-  python inspect_mold.py -r
+  python app.py -r
 ```
 To visualize all the intermediate steps of processing you can add the --step argument in both single image and random image mode, as in the following examples:
 ```
-  python inspect_mold.py -i 04.png -s
+  python app.py -i 04.png -s
  
-  python inspect_mold.py -r -s
+  python app.py -r -s
  ```
 To execute the next step you need to press a key. By typing "q" key you will quit the app.
 
@@ -46,3 +41,22 @@ Each time an image is processed an output is generated in "/output" dir consisti
 >  - Mold is ok<br>
 >  - Warning: Mold may need to be inspected!<br>
 >  - Warning: Mold needs to be inspected now!<br>
+
+Such information can also be visualized in a nicer form since a local dev server is run for testing. In order to do that, access you [localhost](http://localhost:5000) from your browser.
+
+![Information](https://dl.dropboxusercontent.com/s/s8lmsm05rjmu9a3/information.png)
+
+You can run the application in random mode multiple times by executing the bash script "run_n_times.sh". A random image is processed each time and the result can be visualized accessing your localhost as before.
+```
+  ./run_n_times.sh <n>
+ ```
+You can choose the number of molds randomly inspected in a row (default is 10) by choosing n. To move on the next mold you have to presso `CTRL + C`. The updated information can be seen by refreshing your browser at each step.
+
+Note: If you do not need to visualize the output, you can use the inspect_mold.py script instead of app.py while the parameters usage does not change. This will return as usual the pre-processed image and a JSON file with the inspected mold information, possibly showing the outcome of processing intermiediate steps.
+```
+  python inspect_mold.py -i 04.png
+ 
+  python inspect_mold.py -r
+  
+  python inspect_mold.py -r -s
+ ```

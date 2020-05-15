@@ -7,7 +7,13 @@
     This is the most critical scenario since it may cause the plant blocking in the worst case.
     The metal shapes occurring in such risky condition are called "burrs". So, this algorithm is
     designed to search for potential burrs by computing the casting surface area on the mold
-    floor and spotting the presence of poured metal on the upper frame"""
+    floor and spotting the presence of poured metal on the upper frame.
+
+    To run this script n times, you can execute these lines from bash shell:
+
+    for i in `seq <n>`; do python app.py <*args>; done
+
+    """
 
 __author__ = 'martino lorusso'
 
@@ -15,6 +21,8 @@ __author__ = 'martino lorusso'
 # Import the necessary packages
 import argparse
 import json
+from json2html import json2html
+from flask import Flask, request, render_template
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -175,15 +183,11 @@ mold_state, warn_color, frame_clean = cst.check_mold_state(num_issues, frame_cle
 
 # Update the mold information through a dictionary
 inspected = cst.update_mold_state(INSPECTED, mold_state, warn_color, mold_cast_area, frame_clean)
-
-# Check if output dir does exist and create it if necessary
-if not os.path.exists('output'):
-    os.makedirs('output')
 # Save the mold information in a json file
 with open('./output/data.txt', 'w') as outfile:
     json.dump(inspected, outfile)
 # Uncomment these lines to check if json writing was successful
-# with open('data.txt') as json_file:
+# with open('./output/data.txt') as json_file:
 #     data = json.load(json_file)
 #     print(data)
 
@@ -195,3 +199,28 @@ if args["steps"]:
 print(f"Saving image and information . . .")
 filename = './output/output_image.png'
 cv2.imwrite(filename, cropped)
+
+
+# ------ FLASK ------
+app = Flask(__name__, static_folder="output")
+
+@app.route('/')
+def index():
+    with open('./output/data.txt') as json_file:
+        data_dict = json.load(json_file)
+        remap = {'mold_state': 'Mold state', 'warning_color': 'Warning color',
+                 'mold_tot_area': 'Mold casting area [px]',
+                 'sand_roi_tot_area': 'Sandy ROI casting area [px]',
+                 'frame_roi_tot_area': 'Frame ROI casting area [px]',
+                 'frame_clean': 'Frame clean from residues'}
+        data_dict = dict((remap[key], value) for (key, value) in data_dict.items())
+    return render_template('index.html', data=data_dict)
+
+@app.after_request
+def add_header(response):
+    """Add headers to cache the rendered page for 10 minutes"""
+    response.headers['Cache-Control'] = 'public, max-age=0'
+    return response
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')

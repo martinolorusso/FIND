@@ -8,8 +8,8 @@ __author__ = 'martino lorusso'
 
 
 # Loading paths
-IPCAM_PATH = '/home/martino/PycharmProjects/FIND/input_images/set/set_cropped/'
-IPCAM_CALIBRATION_PATH = '/home/martino/PycharmProjects/FIND/input_images/camera_calibration/'
+IPCAM_PATH = '/input_images/test_set_01/'
+IPCAM_CALIBRATION_PATH = '/input_images/camera_calibration/'
 
 # Pre-processing settings
 # See classes and methods documentation of pre-processing step for reference
@@ -41,5 +41,6 @@ FRAME_PARAMS = dict(h=10, template_window_size=7, search_window_size=21,
 # See classes and methods documentation of sand ROI detection step for reference
 MOLD_CASTING_THRESHOLD = 1500
 SIZE_THRESHOLD_IN_PX = 20
+SHOW_IMG = False
 INSPECTED = {'mold_state': 'Mold is ok', 'warning_color': 'green', 'mold_tot_area': 0,
              'sand_roi_tot_area': 0, 'frame_roi_tot_area': 0, 'frame_clean': True}

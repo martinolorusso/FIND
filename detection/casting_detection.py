@@ -207,7 +207,7 @@ class Casting:
         cv2.imshow('Find contours', dst)
         cv2.waitKey()
 
-    def draw_contours_with_areas(self, src, contours_and_areas,
+    def draw_contours_with_areas(self, src, contours_and_areas, show=True,
                                  show_single_contour=True, label='Detected'):
         """Draw filled contours showing the value of their total area
 
@@ -253,13 +253,14 @@ class Casting:
         cv2.putText(res, 'Total A=' + str(int(total_area)) + ' px', (40, 30),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
         # Show all filled contours and the total area
-        cv2.imshow(f"{label} castings", res)
-        cv2.waitKey()
-        cv2.destroyAllWindows()
+        if show:
+            cv2.imshow(f"{label} casting", res)
+            cv2.waitKey()
+            cv2.destroyAllWindows()
 
         return total_area
 
-    def compute_mold_casting_area(self, src, sand_roi, frame_roi, size_thresh_in_px=0):
+    def compute_mold_casting_area(self, src, sand_roi, frame_roi, size_thresh_in_px=0, show=True):
         """Compute total casting area in the mold by adding up the total casting areas of each ROI
 
         Parameters
@@ -271,6 +272,8 @@ class Casting:
             3D array of `int` type representing the image of the frame ROI
         size_thresh_in_px : int
             A threshold of size in pixels to compare the area of each contour to (default 0)
+        show : bool
+            Allow to show the total casting area (default True)
 
         Returns
         -------
@@ -290,6 +293,7 @@ class Casting:
                                                                             size_thresh_in_px)
             tot_roi_area = self.draw_contours_with_areas(src.copy(),
                                                          largest_contours_areas,
+                                                         show=show,
                                                          show_single_contour=False,
                                                          label=labels[idx])
             mold_casting_area.append(int(tot_roi_area))
