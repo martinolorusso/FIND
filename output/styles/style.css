@@ -30,7 +30,22 @@ table{
 }
 
 .riferimenti{
-	opacity: 0.5;
-	font-size: 7pt;
+	opacity: 0.9;
+	font-size: 8pt;
 	padding-top: 2%;
+}
+
+a:link{
+	color: #6fa3c6;
+	text-decoration: underline;
+}
+
+a:visited{
+	color: #6f78c6;
+	text-decoration: underline;
+}
+
+a:hover{
+	color: #6fc6a5;
+	text-decoration: underline;
 }

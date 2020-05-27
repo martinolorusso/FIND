@@ -44,7 +44,7 @@ Each time an image is processed an output is generated in "/output" dir consisti
 
 Such information can also be visualized in a nicer form since a local dev server is run for testing. In order to do that, access you [localhost](http://localhost:5000) from your browser.
 
-![Information](https://dl.dropboxusercontent.com/s/s8lmsm05rjmu9a3/information.png)
+![Information]( https://dl.dropboxusercontent.com/s/q50dtjg7ky9yw7k/information.png)
 
 You can run the application in random mode multiple times by executing the bash script "run_n_times.sh". A random image is processed each time and the result can be visualized accessing your localhost as before.
 ```
